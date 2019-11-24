@@ -29,7 +29,6 @@ window.addEventListener('load',function(){
     //1,查找模板
     //2,替换模板值
     let template = document.getElementById("messageTemplate");
-    
     let html = parse.parse(template.innerHTML, pageData);
     document.querySelector("#app").innerHTML = html;
 });
@@ -38,9 +37,8 @@ document.addEventListener("input",function(event){
     let newValue = event.target.value;
     let target = event.target;
     console.error(target.value);
-    let moduleTemplate = target.getAttribute("u-module");
+    let moduleTemplate = target.getAttribute("u-model");
     pageData[moduleTemplate] = target.value;
-
 
     let template = document.getElementById("messageTemplate");
     let html = parse.parse(template.innerHTML, pageData);

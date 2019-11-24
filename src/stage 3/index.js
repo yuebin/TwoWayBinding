@@ -3,8 +3,9 @@ class Parse {
 
     parse(template, dataSet) {
         let regExp = /\{\{\w+\}\}/g;
+        let bindRegExp = /u\-model/g
         if (template) {
-            return template.replace(regExp, function (match, index, template) {
+            let dateBindTemplate = template.replace(regExp, function (match, index, template) {
                 if (match) {
                     let variable = match.replace(/\{\{/, "").replace(/\}\}/, "");
                     if (dataSet && dataSet.hasOwnProperty(variable)) {
@@ -14,6 +15,8 @@ class Parse {
                     }
                 }
             });
+
+            return dateBindTemplate;
         } else {
             return "";
         }
@@ -38,7 +41,7 @@ document.addEventListener("input",function(event){
     let newValue = event.target.value;
     let target = event.target;
     console.error(target.value);
-    let moduleTemplate = target.getAttribute("u-module");
+    let moduleTemplate = target.getAttribute("u-model");
     pageData[moduleTemplate] = target.value;
 
 
